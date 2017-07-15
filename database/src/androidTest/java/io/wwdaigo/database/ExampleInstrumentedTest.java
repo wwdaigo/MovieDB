@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("io.wwdaigo.database", appContext.getPackageName());
+        assertEquals("io.wwdaigo.database.test", appContext.getPackageName());
     }
 }
