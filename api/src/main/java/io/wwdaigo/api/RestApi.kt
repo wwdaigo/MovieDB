@@ -1,6 +1,7 @@
 package io.wwdaigo.api
 
 import io.wwdaigo.api.commons.BASE_URL
+import io.wwdaigo.api.repository.MovieRequest
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -15,4 +16,8 @@ class RestApi {
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()
+
+    val movieRequest: MovieRequest by lazy {
+        retrofit.create(MovieRequest::class.java)
+    }
 }
