@@ -7,18 +7,34 @@ import com.google.gson.annotations.SerializedName
  */
 data class MovieData(
         val id: Int,
-        val name: String,
-        val description: String,
+        val title: String,
 
-        @SerializedName("favorite_count")
-        val favoriteCount: Int,
+        @SerializedName("original_title")
+        val originalTitle: String,
+        val overview: String,
+        val adult: Boolean,
 
-        @SerializedName("item_count")
-        val itemCount: Int,
+        @SerializedName("release_date")
+        val releaseDate: String,
 
-        @SerializedName("list_type")
-        val listType: String,
+        @SerializedName("original_language")
+        val originalLanguage: String,
+
+        @SerializedName("vote_count")
+        val voteCount: Int,
 
         @SerializedName("poster_path")
-        val posterPath: String
+        val posterPath: String,
+
+        @SerializedName("backdrop_path")
+        val backdropPath: String,
+
+        val popularity: Float,
+        val video: Boolean,
+
+        @SerializedName("vote_average")
+        val voteAverage: Float,
+
+        @SerializedName("genre_ids")
+        val genreIds:List<Int>
 )
