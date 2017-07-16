@@ -1,11 +1,13 @@
 package io.wwdaigo.moviedb.features.movies.viewmodels
 
+import android.content.Context
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
 import io.wwdaigo.api.manager.MovieManager
 import io.wwdaigo.data.MovieData
+import io.wwdaigo.moviedb.R
 import io.wwdaigo.moviedb.viewmodel.ViewModel
 import io.wwdaigo.moviedb.viewmodel.ViewModelOutputs
 
@@ -26,7 +28,7 @@ interface MainViewModelType {
     val outputs: MainViewModelOutputs
 }
 
-class MainViewModel: ViewModel(), MainViewModelType, MainViewModelInputs, MainViewModelOutputs {
+class MainViewModel(val context: Context): ViewModel(), MainViewModelType, MainViewModelInputs, MainViewModelOutputs {
 
     override val inputs: MainViewModelInputs
         get() = this
@@ -45,6 +47,7 @@ class MainViewModel: ViewModel(), MainViewModelType, MainViewModelInputs, MainVi
 
     override fun getPopular() {
 
+        screenTitlePublish.onNext(context.getString(R.string.popular_movies))
         isLoadingPublish.onNext(true)
         movieManager.getPopular()
                 .subscribeOn(Schedulers.io())

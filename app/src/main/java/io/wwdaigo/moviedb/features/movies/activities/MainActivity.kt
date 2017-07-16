@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), OnViewSelectedItem {
 
-    val viewModel: MainViewModelType by lazy { MainViewModel() }
+    val viewModel: MainViewModelType by lazy { MainViewModel(this) }
     val router: MainRouterType by lazy { MainRouter(this) }
 
     val progressBar by lazy { progress }
@@ -34,6 +34,7 @@ class MainActivity : AppCompatActivity(), OnViewSelectedItem {
 
         val moviesAdapter = MoviesRecyclerViewAdapter(this, viewModel.outputs.movieList)
         moviesRecyclerView.adapter = moviesAdapter
+
     }
 
     override fun onStart() {
@@ -43,9 +44,13 @@ class MainActivity : AppCompatActivity(), OnViewSelectedItem {
         viewModel.inputs.getPopular()
     }
 
-    fun bindOuputs() {
-        viewModel.outputs.isLoading.subscribe {
+    fun bindOuputs() = with(viewModel.outputs) {
+        isLoading.subscribe {
             progressBar.visibility = if (it) View.VISIBLE else View.GONE
+        }
+
+        screenTitle.subscribe {
+            title = it
         }
     }
 
