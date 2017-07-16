@@ -5,14 +5,16 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
+import io.wwdaigo.data.MovieData
 
 import io.wwdaigo.moviedb.R
 import io.wwdaigo.moviedb.movies.adapters.MoviesRecyclerViewAdapter
+import io.wwdaigo.moviedb.movies.adapters.OnViewSelectedItem
 import io.wwdaigo.moviedb.movies.viewmodels.MainViewModel
 import io.wwdaigo.moviedb.movies.viewmodels.MainViewModelType
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), OnViewSelectedItem {
 
     val viewModel: MainViewModelType by lazy { MainViewModel() }
 
@@ -29,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val moviesAdapter = MoviesRecyclerViewAdapter(viewModel.outputs.movieList)
+        val moviesAdapter = MoviesRecyclerViewAdapter(this, viewModel.outputs.movieList)
         moviesRecyclerView.adapter = moviesAdapter
     }
 
@@ -45,5 +47,9 @@ class MainActivity : AppCompatActivity() {
             progressBar.visibility = if (it) View.VISIBLE else View.GONE
         }
 
+    }
+
+    override fun onItemSelected(data: MovieData) {
+        print(data.title)
     }
 }

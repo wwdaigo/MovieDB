@@ -16,7 +16,9 @@ import io.wwdaigo.moviedb.R
  * Created by daigomatsuoka on 15/07/17.
  */
 
-class MoviesRecyclerViewAdapter(val observableList: Observable<List<MovieData>>): RecyclerView.Adapter<MoviesRecyclerViewAdapter.MovieViewHolder>() {
+class MoviesRecyclerViewAdapter(
+        val viewActions: OnViewSelectedItem,
+        observableList: Observable<List<MovieData>>): RecyclerView.Adapter<MoviesRecyclerViewAdapter.MovieViewHolder>() {
 
     var movieList: List<MovieData> = emptyList()
 
@@ -42,16 +44,24 @@ class MoviesRecyclerViewAdapter(val observableList: Observable<List<MovieData>>)
     override fun onBindViewHolder(holder: MovieViewHolder?, position: Int) {
 
         val movieData = movieList.get(position)
-        // Bind image view
-        val coverImageView = holder!!.itemView.findViewById<ImageView>(R.id.movie_cover_image)
-
-        Picasso.with(coverImageView.context)
-                .load(movieData.backDropUrl)
-                .into(coverImageView)
+        holder!!.bind(movieData)
     }
 
 
     inner class MovieViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
 
+        fun bind(data: MovieData) = with(itemView) {
+
+            val coverImageView = findViewById<ImageView>(R.id.movie_cover_image)
+
+            Picasso.with(coverImageView.context)
+                    .load(data.backDropUrl)
+                    .into(coverImageView)
+
+
+            super.itemView.setOnClickListener {
+                viewActions.onItemSelected(data)
+            }
+        }
     }
 }
