@@ -54,11 +54,13 @@ class MainViewModel: MainViewModelType, MainViewModelInputs, MainViewModelOutput
 
     override fun getPopular() {
 
+        isLoadingPublish.onNext(true)
         movieManager.getPopular()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
                     movieListPublish.onNext(it.results)
+                    isLoadingPublish.onNext(false)
                 }
     }
 }

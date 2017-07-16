@@ -3,6 +3,7 @@ package io.wwdaigo.moviedb.movies.activities
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.view.View
 
 import io.wwdaigo.moviedb.R
 import io.wwdaigo.moviedb.movies.viewmodels.MainViewModel
@@ -13,6 +14,8 @@ class MainActivity : AppCompatActivity() {
 
     val viewModel: MainViewModelType by lazy { MainViewModel() }
 
+
+    val progressBar by lazy { progress }
     /*
     val moviesRecyclerView: RecyclerView by lazy {
 
@@ -26,5 +29,19 @@ class MainActivity : AppCompatActivity() {
 
         movies_recycler_view.setHasFixedSize(true)
         movies_recycler_view.layoutManager = LinearLayoutManager(this)
+
+    }
+
+    override fun onStart() {
+        super.onStart()
+        bindOuputs()
+
+        viewModel.inputs.getPopular()
+    }
+
+    fun bindOuputs() {
+        viewModel.outputs.isLoading.subscribe {
+            progressBar.visibility = if (it) View.VISIBLE else View.GONE
+        }
     }
 }
