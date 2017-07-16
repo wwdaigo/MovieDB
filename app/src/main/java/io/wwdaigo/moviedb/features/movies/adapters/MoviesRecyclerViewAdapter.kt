@@ -5,11 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import com.squareup.picasso.Picasso
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.wwdaigo.data.MovieData
 import io.wwdaigo.moviedb.R
+import io.wwdaigo.moviedb.commons.DateFormats
+import io.wwdaigo.moviedb.commons.formatDate
 
 /**
  * Created by daigomatsuoka on 15/07/17.
@@ -52,11 +55,15 @@ class MoviesRecyclerViewAdapter(
         fun bind(data: MovieData) = with(itemView) {
 
             val coverImageView = findViewById<ImageView>(R.id.movie_cover_image)
+            val titleTextView = findViewById<TextView>(R.id.movie_name_text_view)
+            val yearTextView = findViewById<TextView>(R.id.release_date_text_view)
 
             Picasso.with(coverImageView.context)
                     .load(data.backDropUrl)
                     .into(coverImageView)
 
+            titleTextView.text = data.title
+            yearTextView.text = data.releaseDate.formatDate(DateFormats.YYYY_MM_DD, DateFormats.YEAR)
 
             super.itemView.setOnClickListener {
                 viewActions.onItemSelected(data)
