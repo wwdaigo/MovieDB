@@ -2,6 +2,7 @@ package io.wwdaigo.moviedb.features.detail.viewmodels
 
 import io.reactivex.Observable
 import io.reactivex.subjects.PublishSubject
+import io.wwdaigo.data.MovieData
 import io.wwdaigo.moviedb.viewmodel.ViewModel
 import io.wwdaigo.moviedb.viewmodel.ViewModelOutputs
 
