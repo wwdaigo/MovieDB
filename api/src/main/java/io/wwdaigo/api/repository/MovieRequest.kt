@@ -12,6 +12,6 @@ import retrofit2.http.Query
 
 interface MovieRequest {
 
-    @GET("/movie/popular")
+    @GET("movie/popular")
     fun getMoviePopular(@Query("api_key") apiKey: String):Observable<Response<MovieData>>
 }
