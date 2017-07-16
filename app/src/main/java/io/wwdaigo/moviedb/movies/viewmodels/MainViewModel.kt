@@ -1,4 +1,4 @@
-package io.wwdaigo.moviedb.features.movies.viewmodels
+package io.wwdaigo.moviedb.movies.viewmodels
 
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -6,7 +6,7 @@ import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
 import io.wwdaigo.api.manager.MovieManager
 import io.wwdaigo.data.MovieData
-import io.wwdaigo.moviedb.features.movies.viewmodels.base.ViewModel
+import io.wwdaigo.moviedb.movies.viewmodels.base.ViewModel
 
 /**
  * Created by daigomatsuoka on 15/07/17.

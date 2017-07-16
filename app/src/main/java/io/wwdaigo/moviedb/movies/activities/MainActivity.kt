@@ -1,4 +1,4 @@
-package io.wwdaigo.moviedb.features.movies.activities
+package io.wwdaigo.moviedb.movies.activities
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -8,11 +8,10 @@ import android.view.View
 import io.wwdaigo.data.MovieData
 
 import io.wwdaigo.moviedb.R
-import io.wwdaigo.moviedb.features.detail.activities.DetailActivity
-import io.wwdaigo.moviedb.features.movies.adapters.MoviesRecyclerViewAdapter
-import io.wwdaigo.moviedb.features.movies.adapters.OnViewSelectedItem
-import io.wwdaigo.moviedb.features.movies.viewmodels.MainViewModel
-import io.wwdaigo.moviedb.features.movies.viewmodels.MainViewModelType
+import io.wwdaigo.moviedb.movies.adapters.MoviesRecyclerViewAdapter
+import io.wwdaigo.moviedb.movies.adapters.OnViewSelectedItem
+import io.wwdaigo.moviedb.movies.viewmodels.MainViewModel
+import io.wwdaigo.moviedb.movies.viewmodels.MainViewModelType
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), OnViewSelectedItem {
@@ -51,6 +50,6 @@ class MainActivity : AppCompatActivity(), OnViewSelectedItem {
     }
 
     override fun onItemSelected(data: MovieData) {
-        DetailActivity.start(this, data)
+        print(data.title)
     }
 }

@@ -1,4 +1,4 @@
-package io.wwdaigo.moviedb.features.movies.viewmodels.base
+package io.wwdaigo.moviedb.movies.viewmodels.base
 
 import io.reactivex.Observable
 
