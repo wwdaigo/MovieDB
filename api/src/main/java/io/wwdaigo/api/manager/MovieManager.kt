@@ -17,6 +17,10 @@ class MovieManager {
         return RestApi().movieRequest.getMoviePopular(API_KEY)
     }
 
+    fun getTopRated():Observable<Response<MovieData>> {
+        return RestApi().movieRequest.getMovieTopRated(API_KEY)
+    }
+
     fun getVideos(movieId: Int): Observable<Response<VideoData>> {
         return RestApi().movieRequest.getMovieVideos(API_KEY, movieId)
     }

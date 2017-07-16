@@ -17,6 +17,9 @@ interface MovieRequest {
     @GET("movie/popular")
     fun getMoviePopular(@Query("api_key") apiKey: String):Observable<Response<MovieData>>
 
+    @GET("movie/top_rated")
+    fun getMovieTopRated(@Query("api_key") apiKey: String):Observable<Response<MovieData>>
+
     @GET("movie/{movie_id}/videos")
     fun getMovieVideos(@Query("api_key") apiKey: String,
                        @Query("movie_id") movieId: Int): Observable<Response<VideoData>>
