@@ -11,6 +11,8 @@ import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.wwdaigo.data.MovieData
 import io.wwdaigo.moviedb.R
+import io.wwdaigo.moviedb.commons.DateFormats
+import io.wwdaigo.moviedb.commons.formatDate
 
 /**
  * Created by daigomatsuoka on 15/07/17.
@@ -61,7 +63,7 @@ class MoviesRecyclerViewAdapter(
                     .into(coverImageView)
 
             titleTextView.text = data.title
-            yearTextView.text = data.releaseDate
+            yearTextView.text = data.releaseDate.formatDate(DateFormats.YYYY_MM_DD, DateFormats.YEAR)
 
             super.itemView.setOnClickListener {
                 viewActions.onItemSelected(data)
