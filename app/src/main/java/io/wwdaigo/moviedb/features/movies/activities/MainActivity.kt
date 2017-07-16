@@ -4,6 +4,8 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.view.ContextMenu
+import android.view.Menu
 import android.view.View
 import io.wwdaigo.data.MovieData
 
@@ -56,5 +58,10 @@ class MainActivity : AppCompatActivity(), OnViewSelectedItem {
 
     override fun onItemSelected(data: MovieData) {
         router.goToDetails(data)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu!!)
+        return true
     }
 }
