@@ -29,7 +29,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
         val moviesAdapter = MoviesRecyclerViewAdapter(viewModel.outputs.movieList)
         moviesRecyclerView.adapter = moviesAdapter
     }
@@ -45,7 +44,6 @@ class MainActivity : AppCompatActivity() {
         viewModel.outputs.isLoading.subscribe {
             progressBar.visibility = if (it) View.VISIBLE else View.GONE
         }
-
 
     }
 }

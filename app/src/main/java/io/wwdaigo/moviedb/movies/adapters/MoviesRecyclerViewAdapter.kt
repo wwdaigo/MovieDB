@@ -4,7 +4,9 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import com.squareup.picasso.Picasso
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.wwdaigo.data.MovieData
@@ -39,11 +41,13 @@ class MoviesRecyclerViewAdapter(val observableList: Observable<List<MovieData>>)
 
     override fun onBindViewHolder(holder: MovieViewHolder?, position: Int) {
 
+        val movieData = movieList.get(position)
         // Bind image view
-        val movieNameTextView = holder!!.itemView.findViewById<TextView>(R.id.movie_name_text)
+        val coverImageView = holder!!.itemView.findViewById<ImageView>(R.id.movie_cover_image)
 
-        movieNameTextView.text = movieList.get(position).title
-
+        Picasso.with(coverImageView.context)
+                .load(movieData.backDropUrl)
+                .into(coverImageView)
     }
 
 

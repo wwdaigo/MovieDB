@@ -5,6 +5,9 @@ import com.google.gson.annotations.SerializedName
 /**
  * Created by daigomatsuoka on 15/07/17.
  */
+const val IMAGE_URL = "http://image.tmdb.org/t/p/"
+const val COVER_WIDTH = "w780"
+
 data class MovieData(
         val id: Int,
         val title: String,
@@ -37,4 +40,7 @@ data class MovieData(
 
         @SerializedName("genre_ids")
         val genreIds:List<Int>
-)
+) {
+        val backDropUrl: String
+                get() = "$IMAGE_URL$COVER_WIDTH$backdropPath"
+}
