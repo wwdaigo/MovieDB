@@ -12,6 +12,11 @@
         card_view:cardCornerRadius="4dp"
         >
 
+        <TextView
+            android:id="@+id/movie_name_text"
+            android:text="@string/app_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
         <ImageView
             android:id="@+id/movie_cover_image"
             android:layout_width="match_parent"
