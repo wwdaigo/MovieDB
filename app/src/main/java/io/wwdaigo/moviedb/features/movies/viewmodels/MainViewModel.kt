@@ -52,10 +52,14 @@ class MainViewModel(val context: Context): ViewModel(), MainViewModelType, MainV
         movieManager.getTopRated()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe {
+                .subscribe ({
                     movieListPublish.onNext(it.results)
                     isLoadingPublish.onNext(false)
-                }
+                }, {
+                    errorMessagePublish.onNext(it.localizedMessage)
+                    isLoadingPublish.onNext(false)
+                    it.printStackTrace()
+                })
     }
 
     override fun getPopular() {
@@ -65,9 +69,13 @@ class MainViewModel(val context: Context): ViewModel(), MainViewModelType, MainV
         movieManager.getPopular()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe {
+                .subscribe ({
                     movieListPublish.onNext(it.results)
                     isLoadingPublish.onNext(false)
-                }
+                }, {
+                    errorMessagePublish.onNext(it.localizedMessage)
+                    isLoadingPublish.onNext(false)
+                    it.printStackTrace()
+                })
     }
 }
