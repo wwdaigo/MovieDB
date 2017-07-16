@@ -1,15 +1,27 @@
-package io.wwdaigo.moviedb.detail.activities
+package io.wwdaigo.moviedb.features.detail.activities
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.View
+import io.wwdaigo.data.MovieData
 
 import io.wwdaigo.moviedb.R
+import io.wwdaigo.moviedb.commons.enums.IntentExtra
 
 class DetailActivity : AppCompatActivity() {
+
+    companion object {
+        fun start(context: Context, data: MovieData) {
+            val intent = Intent(context, DetailActivity::class.java)
+            intent.putExtra(IntentExtra.MOVIE_DATA.key, data)
+            context.startActivity(intent)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

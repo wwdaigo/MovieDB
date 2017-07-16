@@ -1,4 +1,4 @@
-package io.wwdaigo.moviedb.movies.adapters
+package io.wwdaigo.moviedb.features.movies.adapters
 
 import io.wwdaigo.data.MovieData
 
