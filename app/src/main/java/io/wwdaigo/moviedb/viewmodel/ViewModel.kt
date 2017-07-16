@@ -10,6 +10,7 @@ import io.reactivex.subjects.PublishSubject
 interface ViewModelOutputs {
     val isLoading: Observable<Boolean>
     val errorMessage: Observable<String>
+    val title: Observable<String>
 }
 
 abstract class ViewModel: ViewModelOutputs {
@@ -21,5 +22,9 @@ abstract class ViewModel: ViewModelOutputs {
     val errorMessagePublish = PublishSubject.create<String>()
     override val errorMessage: Observable<String>
         get() = errorMessagePublish
+
+    val titlePublish = PublishSubject.create<String>()
+    override val title: Observable<String>
+        get() = titlePublish
 
 }
