@@ -1,5 +1,7 @@
 package io.wwdaigo.moviedb.viewmodels.base
 
+import io.reactivex.Observable
+
 /**
  * Created by daigomatsuoka on 15/07/17.
  */
@@ -7,8 +9,8 @@ package io.wwdaigo.moviedb.viewmodels.base
 interface ViewModel {
 
     interface Outputs {
-        val isLoading: Boolean
-        val errorMessage: String
+        val isLoading: Observable<Boolean>
+        val errorMessage: Observable<String>
     }
 
 }

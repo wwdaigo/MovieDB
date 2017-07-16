@@ -1,5 +1,7 @@
 package io.wwdaigo.moviedb.viewmodels
 
+import io.reactivex.Observable
+import io.reactivex.subjects.PublishSubject
 import io.wwdaigo.moviedb.viewmodels.base.ViewModel
 
 /**
@@ -28,9 +30,11 @@ class MainViewModel: MainViewModelType, MainViewModelInputs, MainViewModelOutput
         get() = this
 
 
-    override val isLoading: Boolean
-        get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
+    val isLoadingPublish = PublishSubject.create<Boolean>()
+    override val isLoading: Observable<Boolean>
+        get() = isLoadingPublish
 
-    override val errorMessage: String
-        get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
+    val errorMessagePublish = PublishSubject.create<String>()
+    override val errorMessage: Observable<String>
+        get() = errorMessagePublish
 }
