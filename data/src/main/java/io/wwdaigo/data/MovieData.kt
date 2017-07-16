@@ -1,6 +1,7 @@
 package io.wwdaigo.data
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 /**
  * Created by daigomatsuoka on 15/07/17.
@@ -40,7 +41,7 @@ data class MovieData(
 
         @SerializedName("genre_ids")
         val genreIds:List<Int>
-) {
+):Serializable {
         val backDropUrl: String
                 get() = "$IMAGE_URL$COVER_WIDTH$backdropPath"
 }
