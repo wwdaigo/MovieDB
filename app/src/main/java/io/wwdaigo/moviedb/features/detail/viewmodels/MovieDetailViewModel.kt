@@ -2,7 +2,8 @@ package io.wwdaigo.moviedb.features.detail.viewmodels
 
 import io.reactivex.Observable
 import io.reactivex.subjects.PublishSubject
-import io.wwdaigo.moviedb.features.movies.viewmodels.base.ViewModel
+import io.wwdaigo.moviedb.viewmodel.ViewModel
+import io.wwdaigo.moviedb.viewmodel.ViewModelOutputs
 
 /**
  * Created by daigomatsuoka on 16/07/17.
@@ -11,7 +12,7 @@ interface MovieDetailViewModelInputs {
 
 }
 
-interface MovieDetailViewModelOutputs: ViewModel.Outputs {
+interface MovieDetailViewModelOutputs: ViewModelOutputs {
 
 }
 
@@ -20,7 +21,7 @@ interface MovieDetailViewModelType {
     val outputs: MovieDetailViewModelOutputs
 }
 
-class MovieDetailViewModel: MovieDetailViewModelType, MovieDetailViewModelInputs, MovieDetailViewModelOutputs {
+class MovieDetailViewModel: ViewModel(), MovieDetailViewModelType, MovieDetailViewModelInputs, MovieDetailViewModelOutputs {
 
     override val inputs: MovieDetailViewModelInputs
         get() = this
@@ -28,11 +29,5 @@ class MovieDetailViewModel: MovieDetailViewModelType, MovieDetailViewModelInputs
     override val outputs: MovieDetailViewModelOutputs
         get() = this
 
-    val isLoadingPublish = PublishSubject.create<Boolean>()
-    override val isLoading: Observable<Boolean>
-        get() = isLoadingPublish
 
-    val errorMessagePublish = PublishSubject.create<String>()
-    override val errorMessage: Observable<String>
-        get() = errorMessagePublish
 }

@@ -6,7 +6,8 @@ import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
 import io.wwdaigo.api.manager.MovieManager
 import io.wwdaigo.data.MovieData
-import io.wwdaigo.moviedb.features.movies.viewmodels.base.ViewModel
+import io.wwdaigo.moviedb.viewmodel.ViewModel
+import io.wwdaigo.moviedb.viewmodel.ViewModelOutputs
 
 /**
  * Created by daigomatsuoka on 15/07/17.
@@ -16,7 +17,7 @@ interface MainViewModelInputs {
     fun getPopular()
 }
 
-interface MainViewModelOutputs: ViewModel.Outputs {
+interface MainViewModelOutputs: ViewModelOutputs {
     val movieList: Observable<List<MovieData>>
 }
 
@@ -25,22 +26,13 @@ interface MainViewModelType {
     val outputs: MainViewModelOutputs
 }
 
-class MainViewModel: MainViewModelType, MainViewModelInputs, MainViewModelOutputs {
+class MainViewModel: ViewModel(), MainViewModelType, MainViewModelInputs, MainViewModelOutputs {
 
     override val inputs: MainViewModelInputs
         get() = this
 
     override val outputs: MainViewModelOutputs
         get() = this
-
-
-    val isLoadingPublish = PublishSubject.create<Boolean>()
-    override val isLoading: Observable<Boolean>
-        get() = isLoadingPublish
-
-    val errorMessagePublish = PublishSubject.create<String>()
-    override val errorMessage: Observable<String>
-        get() = errorMessagePublish
 
     val movieListPublish = PublishSubject.create<List<MovieData>>()
     override val movieList: Observable<List<MovieData>>
@@ -50,7 +42,6 @@ class MainViewModel: MainViewModelType, MainViewModelInputs, MainViewModelOutput
     val movieManager by lazy {
         MovieManager()
     }
-
 
     override fun getPopular() {
 
