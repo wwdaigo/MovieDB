@@ -1,7 +1,11 @@
 package io.wwdaigo.moviedb.viewmodels
 
 import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
+import io.wwdaigo.api.manager.MovieManager
+import io.wwdaigo.data.MovieData
 import io.wwdaigo.moviedb.viewmodels.base.ViewModel
 
 /**
@@ -9,11 +13,11 @@ import io.wwdaigo.moviedb.viewmodels.base.ViewModel
  */
 
 interface MainViewModelInputs {
-
+    fun getPopular()
 }
 
 interface MainViewModelOutputs: ViewModel.Outputs {
-
+    val movieList: Observable<List<MovieData>>
 }
 
 interface MainViewModelType {
@@ -37,4 +41,24 @@ class MainViewModel: MainViewModelType, MainViewModelInputs, MainViewModelOutput
     val errorMessagePublish = PublishSubject.create<String>()
     override val errorMessage: Observable<String>
         get() = errorMessagePublish
+
+    val movieListPublish = PublishSubject.create<List<MovieData>>()
+    override val movieList: Observable<List<MovieData>>
+        get() = movieListPublish
+
+
+    val movieManager by lazy {
+        MovieManager()
+    }
+
+
+    override fun getPopular() {
+
+        movieManager.getPopular()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe {
+                    movieListPublish.onNext(it.results)
+                }
+    }
 }
