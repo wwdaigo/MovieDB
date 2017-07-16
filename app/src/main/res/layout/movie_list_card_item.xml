@@ -49,7 +49,6 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/movie_name_text_view"
                     android:textColor="@android:color/white"
-                    android:text="12/12/2012"
                     android:textSize="12sp"
                     />
 
