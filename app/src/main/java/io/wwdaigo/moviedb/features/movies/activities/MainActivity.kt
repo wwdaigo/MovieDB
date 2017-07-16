@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.ContextMenu
 import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import io.wwdaigo.data.MovieData
 
@@ -63,5 +64,24 @@ class MainActivity : AppCompatActivity(), OnViewSelectedItem {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu!!)
         return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+
+        when (item?.itemId) {
+
+            R.id.menu_main_popular -> {
+                viewModel.inputs.getPopular()
+                return true
+            }
+
+            R.id.menu_main_top_rated -> {
+                viewModel.inputs.getTopRated()
+                return true
+            }
+
+            else -> return super.onOptionsItemSelected(item)
+
+        }
     }
 }

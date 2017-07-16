@@ -17,6 +17,7 @@ import io.wwdaigo.moviedb.viewmodel.ViewModelOutputs
 
 interface MainViewModelInputs {
     fun getPopular()
+    fun getTopRated()
 }
 
 interface MainViewModelOutputs: ViewModelOutputs {
@@ -43,6 +44,18 @@ class MainViewModel(val context: Context): ViewModel(), MainViewModelType, MainV
 
     val movieManager by lazy {
         MovieManager()
+    }
+
+    override fun getTopRated() {
+        screenTitlePublish.onNext(context.getString(R.string.top_rated_movies))
+        isLoadingPublish.onNext(true)
+        movieManager.getTopRated()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe {
+                    movieListPublish.onNext(it.results)
+                    isLoadingPublish.onNext(false)
+                }
     }
 
     override fun getPopular() {
