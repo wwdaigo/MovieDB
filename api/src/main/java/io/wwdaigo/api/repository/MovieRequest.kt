@@ -14,10 +14,10 @@ import retrofit2.http.Query
 
 interface MovieRequest {
 
-    @GET("/movie/popular")
+    @GET("movie/popular")
     fun getMoviePopular(@Query("api_key") apiKey: String):Observable<Response<MovieData>>
 
-    @GET("/movie/top_rated")
+    @GET("movie/top_rated")
     fun getMovieTopRated(@Query("api_key") apiKey: String):Observable<Response<MovieData>>
 
     @GET("movie/{movie_id}/videos")

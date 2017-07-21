@@ -11,7 +11,7 @@ import io.wwdaigo.moviedb.R
 
 
 class ErrorFragment : Fragment() {
-    
+
     private var mParam1: String? = null
     private var mParam2: String? = null
 
